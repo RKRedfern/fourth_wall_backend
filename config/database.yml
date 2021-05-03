@@ -1,0 +1,21 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: rednails1
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: fourth_wall_backend_development
+
+test:
+  <<: *default
+  database: fourth_wall_backend_test
+
+production:
+  <<: *default
+  database: fourth_wall_backend_production
+  username: fourth_wall_backend
+  password: <%= ENV['FOURTH_WALL_BACKEND_DATABASE_PASSWORD'] %>
