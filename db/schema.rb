@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_130450) do
+ActiveRecord::Schema.define(version: 2021_05_04_133446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "meditations", force: :cascade do |t|
+  create_table "ghosts", force: :cascade do |t|
     t.string "name"
     t.string "kind"
-    t.integer "duration"
+    t.string "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "haunted_houses", force: :cascade do |t|
+    t.string "location"
+    t.string "kind"
     t.string "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
