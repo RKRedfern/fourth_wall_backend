@@ -1,14 +1,20 @@
-class GhostsController < ApplicationController
+class Api::V1::GhostsController < ApplicationController
+
+    def show
+        ghost = Ghost.all
+        render json: GhostSerializer.new()
+    end
 
     def index
-        ghosts = Ghosts.all 
-        render json: GhostsSerializer.new(ghosts)
+        
+        ghosts = Ghost.all
+        render json: GhostSerializer.new(ghosts)
     end
 
     def create
-        ghost = Ghosts.new(ghost_params)
-        if Ghosts.save
-            render json: GhostsSerializer.new(ghost), status: :accepted
+        ghost = Ghost.new(ghost_params)
+        if Ghost.save
+            render json: GhostSerializer.new(ghost), status: :accepted
         else
             render json: {errors: syllabus.errors.full_messages}, status: :unprocessible_entity
         end

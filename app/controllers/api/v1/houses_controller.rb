@@ -1,14 +1,14 @@
 class Api::V1::HousesController < ApplicationController
 
     def index
-        houses = Houses.all 
-        render json: HousesSerializer.new(houses)
+        houses = House.all 
+        render json: HouseSerializer.new(houses)
     end
 
     def create
-        houses = Houses.new(houses_params)
-        if Houses.save
-            render json: HousesSerializer.new(houses), status: :accepted
+        houses = House.new(houses_params)
+        if House.save
+            render json: HouseSerializer.new(houses), status: :accepted
         else
             render json: {errors: syllabus.errors.full_messages}, status: :unprocessible_entity
         end
