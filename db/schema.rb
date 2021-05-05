@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_04_133446) do
+ActiveRecord::Schema.define(version: 2021_05_05_010332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,23 +19,30 @@ ActiveRecord::Schema.define(version: 2021_05_04_133446) do
     t.string "name"
     t.string "kind"
     t.string "notes"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ghosts_on_user_id"
   end
 
-  create_table "haunted_houses", force: :cascade do |t|
+  create_table "houses", force: :cascade do |t|
     t.string "location"
     t.string "kind"
     t.string "notes"
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_houses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
+    t.string "bio"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "ghosts", "users"
+  add_foreign_key "houses", "users"
 end

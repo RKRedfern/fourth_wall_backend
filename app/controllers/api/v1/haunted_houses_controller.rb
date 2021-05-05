@@ -1,2 +1,0 @@
-class HauntedHousesController < ApplicationController
-end

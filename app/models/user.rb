@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-    has_many :meditations
-    has_many :haunted_houses
+    has_many :ghosts
+    has_many :houses
 end
