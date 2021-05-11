@@ -1,4 +1,4 @@
-class API::V1::UsersController < ApplicationController
+class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create, :index]
     
     def index
@@ -20,12 +20,14 @@ class API::V1::UsersController < ApplicationController
         end
     end
 
-    def destroy
+    def delete
+        @user = User.find_by(:user_id)
         @user.destroy
         render json: { success: 'User deleted successfully' }
     end
 
     private
+
     def user_params
         params.require(:user).permit(:name, :password, :bio)
     end

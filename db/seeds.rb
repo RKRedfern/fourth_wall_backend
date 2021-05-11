@@ -1,5 +1,5 @@
 
-User.create(name: 'Riley', password_digest: 'password', bio: 'Long time hunter, famous for discovering the phantom of Fargos Pizza')
+User.create(name: 'Riley', password: 'pw', bio: 'Long time hunter, famous for discovering the phantom of Fargos Pizza')
 
 House.create(location: 'Fargos Pizza', kind: 'Restaurant', notes: 'Recently shuttered due to Covid-19', user_id: 1)
 
