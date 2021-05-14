@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def profile
-        render json: { user: UserSerializer.new(@user)}, status: :accepted
+        render json: { user: UserSerializer.new(@user) }, status: :accepted
     end
 
     def create
@@ -20,8 +20,14 @@ class Api::V1::UsersController < ApplicationController
         end
     end
 
-    def delete
-        @user = User.find_by(:user_id)
+    def update
+        user = User.find(params[:id])
+        user.update(params.require(:name)).permit!
+        render json: { user: UserSerializer.new(@user) }
+    end
+
+    def destroy
+        # user = User.find(params[:id])
         @user.destroy
         render json: { success: 'User deleted successfully' }
     end
@@ -29,7 +35,7 @@ class Api::V1::UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:name, :password, :bio)
+        params.require(:user).permit(:id, :name, :password, :bio)
     end
 
 end

@@ -1,12 +1,7 @@
 class Api::V1::GhostsController < ApplicationController
-
-    def show
-        ghost = Ghost.all
-        render json: GhostSerializer.new()
-    end
-
+    skip_before_action :authorized
+    
     def index
-        
         ghosts = Ghost.all
         render json: GhostSerializer.new(ghosts)
     end

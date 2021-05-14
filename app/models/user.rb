@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-    has_many :ghosts
-    has_many :houses
+    has_many :ghosts, dependent: :destroy
+    has_many :houses, dependent: :destroy
 
     has_secure_password
     

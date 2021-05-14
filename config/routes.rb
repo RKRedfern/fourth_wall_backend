@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
       resources :houses, only: [:show, :index, :create, :update]
 
-      resources :ghosts, only: [:show, :index, :create, :update]
+      resources :ghosts
 
       resources :users do
         resources :ghosts, only: [:index, :show, :create, :update, :destroy]
