@@ -21,8 +21,9 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def update
-        user = User.find(params[:id])
-        user.update(params.require(:name)).permit!
+        @user = User.find(params[:id])
+        @user.update(bio: params["bio"])
+        @user.save
         render json: { user: UserSerializer.new(@user) }
     end
 

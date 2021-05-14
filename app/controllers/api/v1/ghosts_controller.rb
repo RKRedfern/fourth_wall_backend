@@ -1,18 +1,18 @@
 class Api::V1::GhostsController < ApplicationController
     skip_before_action :authorized
+    before_action :set_user
     
-    def index
-        ghosts = Ghost.all
-        render json: GhostSerializer.new(ghosts)
+    def create
+        @ghost = @user.ghosts.create(ghost_params)
+        if @ghost.save
+            render json: GhostSerializer.new(@ghost), status: :accepted
+        else
+            render json: {error: 'Error Adding Ghost'}
+        end
     end
 
-    def create
-        ghost = Ghost.new(ghost_params)
-        if Ghost.save
-            render json: GhostSerializer.new(ghost), status: :accepted
-        else
-            render json: {errors: syllabus.errors.full_messages}, status: :unprocessible_entity
-        end
+    def set_user
+        @user = User.find_by(params[:id])
     end
 
     private
